@@ -11,4 +11,4 @@ app = flask.Flask(__name__)
 @app.route("/",methods=['GET'])
 def contest_data():
     contest_id = flask.request.args['id']
-    return flask.jsonify( codeforces_contest_wrapper.parse_contest(PROBLEM_LINK + contest_id))
+    return flask.jsonify( codeforces_contest_wrapper.parse_contest(CONTEST_LINK + contest_id))
