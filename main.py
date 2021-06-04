@@ -1,10 +1,8 @@
-import codeforces_problem_wrapper
-import codeforces_contest_wrapper
 import flask
+import codeforces_contest_wrapper
 
 PROBLEM_LINK = 'https://codeforces.com/problemset/problem/'
 CONTEST_LINK = 'https://codeforces.com/contest/'
-
 
 app = flask.Flask(__name__)
 
