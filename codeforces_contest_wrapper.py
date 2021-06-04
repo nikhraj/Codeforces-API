@@ -3,33 +3,14 @@ import requests
 
 
 def parse_contest(contest_link):
-    page = requests.get(contest_link)
+    page = requests.get(contest_link).text
     tree = html.fromstring(page.content)
     contest = {
         "contest_id": get_contest_id(tree),
-        "contest_name": get_contest_name(tree),
-        "contest_link": get_contest_link(tree),
         "problems": get_problems(tree),
-        "editorial": get_editorial(tree),
-        "announcement": get_announcement(tree),
+       
     }
     return contest
-
-def get_announcement(tree):
-    announcement = tree.xpath('//*[@id="sidebar"]/div[4]/ul/li[1]/span[1]/a/@href')
-    return announcement[0] if len(announcement) else ""
-
-def get_editorial(tree):
-    editorial = tree.xpath('//*[@id="sidebar"]/div[4]/ul/li[2]/span[1]/a/@href')
-    return editorial[0] if len(editorial) else ""
-
-def get_contest_name(tree):
-    contest_name = tree.xpath('//*[@id="sidebar"]/div[1]/table/tbody/tr[1]/th/a/text()')
-    return contest_name[0] if len(contest_name) else ""
-
-def get_contest_link(tree):
-    contest_link = tree.xpath('//*[@id="sidebar"]/div[1]/table/tbody/tr[1]/th/a/@href')
-    return contest_link[0] if len(contest_link) else ""
 
 def get_contest_id(tree):
     contest_link = tree.xpath('//*[@id="sidebar"]/div[1]/table/tbody/tr[1]/th/a/@href')
